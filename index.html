@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Static Login Website</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            display: none;
+            text-align: center;
+        }
+
+        .login-form {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .login-form h2 {
+            margin-bottom: 20px;
+        }
+
+        .login-form input[type="email"],
+        .login-form input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .login-form button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .login-form button:hover {
+            background-color: #0056b3;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .welcome {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+        }
+
+        nav {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 0;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .content {
+            padding: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-form">
+        <h2>Login</h2>
+        <input type="email" id="email" placeholder="Enter email">
+        <input type="password" id="password" placeholder="Enter password">
+        <button onclick="login()">Login</button>
+        <p id="error" style="color: red; display: none;">Incorrect email or password. Try again.</p>
+    </div>
+
+    <div class="container">
+        <nav>
+            <ul>
+                <li><a href="#home" onclick="showContent('home')">Home</a></li>
+                <li id="admin-only" class="hidden"><a href="#admin" onclick="showContent('admin')">Admin Panel</a></li>
+                <li><a href="#about" onclick="showContent('about')">About</a></li>
+                <li><a href="#contact" onclick="showContent('contact')">Contact</a></li>
+            </ul>
+        </nav>
+        <div id="home" class="content">
+            <h2>Home</h2>
+            <p>Welcome to the home page of your static website!</p>
+        </div>
+        <div id="admin" class="content hidden">
+            <h2>Admin Panel</h2>
+            <p>Welcome, Admin! You have full access to this system.</p>
+        </div>
+        <div id="about" class="content hidden">
+            <h2>About</h2>
+            <p>This is a simple static website with a login feature built using HTML, CSS, and JavaScript.</p>
+        </div>
+        <div id="contact" class="content hidden">
+            <h2>Contact</h2>
+            <p>You can reach us at contact@staticwebsite.com.</p>
+        </div>
+        <div id="editor" class="content hidden">
+            <h2>Editor Content</h2>
+            <p>Welcome, Editor! You can edit content here but have limited access.</p>
+        </div>
+        <div id="viewer" class="content hidden">
+            <h2>Viewer Content</h2>
+            <p>Welcome, Viewer! You can view content but cannot make changes.</p>
+        </div>
+    </div>
+
+    <script>
+        const users = [
+            { email: "chilesheb129@gmail.com", password: "mypassword", role: "superadmin" },
+            { email: "besa@gmail.com", password: "besa123", role: "editor" },
+            { email: "chiles@gmail.com", password: "chiles123", role: "viewer" }
+        ];
+
+        function login() {
+            const emailInput = document.getElementById('email').value;
+            const passwordInput = document.getElementById('password').value;
+            const error = document.getElementById('error');
+            const user = users.find(u => u.email === emailInput && u.password === passwordInput);
+
+            if (user) {
+                // Redirect to the new site URL
+                window.location.href = "https://besa854.github.io/Secondstar/";
+            } else {
+                error.style.display = 'block';
+            }
+        }
+
+        function showContent(section) {
+            document.querySelectorAll('.content').forEach(content => {
+                content.classList.add('hidden');
+            });
+            document.getElementById(section).classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>
